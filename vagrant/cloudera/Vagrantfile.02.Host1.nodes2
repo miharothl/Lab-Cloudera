@@ -1,0 +1,52 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+#Vagrant.configure("2") do |config|
+#  config.vm.box = "ubuntu/precise64"
+#  config.vm.hostname = 'web'
+#  config.vm.box_url = "ubuntu/precise64"
+#
+#  config.vm.network :private_network, ip: "192.168.56.101"
+#
+#  config.vm.provider :virtualbox do |v|
+#    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+#    v.customize ["modifyvm", :id, "--memory", 512]
+#    v.customize ["modifyvm", :id, "--name", "web"]
+#  end
+#end
+
+
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define "vc1" do |vc1|
+    vc1.vm.box = "vc_base"
+    vc1.vm.hostname = 'vc1'
+    vc1.vm.box_url = "vc_base"
+
+    vc1.vm.network :public_network, ip: "10.163.104.111", bridge: "wlp2s0"
+
+    vc1.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 7168]
+      v.customize ["modifyvm", :id, "--name", "vc1"]
+      v.customize ["modifyvm", :id, "--cpus", "4"]
+    end
+  end
+
+  config.vm.define "vc2" do |vc2|
+    vc2.vm.box = "vc_base"
+    vc2.vm.hostname = 'vc2'
+    vc2.vm.box_url = "vc_base"
+
+    vc2.vm.network :public_network, ip: "10.163.104.112", bridge: "wlp2s0"
+
+    vc2.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 6144]
+      v.customize ["modifyvm", :id, "--name", "vc2"]
+      v.customize ["modifyvm", :id, "--cpus", "4"]
+     end
+  end
+
+end
