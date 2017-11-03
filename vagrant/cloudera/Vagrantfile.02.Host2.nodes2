@@ -19,32 +19,32 @@
 
 Vagrant.configure("2") do |config|
 
-  config.vm.define "vc1" do |vc1|
-    vc1.vm.box = "vc_base"
-    vc1.vm.hostname = 'vc1'
-    vc1.vm.box_url = "vc_base"
+  config.vm.define "vc4" do |vc4|
+    vc4.vm.box = "vc_base"
+    vc4.vm.hostname = 'vc4'
+    vc4.vm.box_url = "vc_base"
 
-    vc1.vm.network :public_network, ip: "10.163.104.111", bridge: "wlp2s0"
+    vc4.vm.network :public_network, ip: "10.163.104.114", bridge: "wlp2s0"
 
-    vc1.vm.provider :virtualbox do |v|
+    vc4.vm.provider :virtualbox do |v|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--memory", 7168]
-      v.customize ["modifyvm", :id, "--name", "vc1"]
+      v.customize ["modifyvm", :id, "--name", "vc4"]
       v.customize ["modifyvm", :id, "--cpus", "4"]
     end
   end
 
-  config.vm.define "vc2" do |vc2|
-    vc2.vm.box = "vc_base"
-    vc2.vm.hostname = 'vc2'
-    vc2.vm.box_url = "vc_base"
+  config.vm.define "vc5" do |vc5|
+    vc5.vm.box = "vc_base"
+    vc5.vm.hostname = 'vc5'
+    vc5.vm.box_url = "vc_base"
 
-    vc2.vm.network :public_network, ip: "10.163.104.112", bridge: "wlp2s0"
+    vc5.vm.network :public_network, ip: "10.163.104.115", bridge: "wlp2s0"
 
-    vc2.vm.provider :virtualbox do |v|
+    vc5.vm.provider :virtualbox do |v|
       v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
       v.customize ["modifyvm", :id, "--memory", 6144]
-      v.customize ["modifyvm", :id, "--name", "vc2"]
+      v.customize ["modifyvm", :id, "--name", "vc5"]
       v.customize ["modifyvm", :id, "--cpus", "4"]
      end
   end
