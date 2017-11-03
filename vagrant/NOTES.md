@@ -1,6 +1,17 @@
-
-
 ### Setup new virtual machine
+
+#### Setup host                                                                 
+
+On host Ubuntu 16.04 install required software:
+
+`
+sudo apt update
+sudo apt upgrade
+
+sudo apt install virtualbox
+sudo apt install virtualbox-dkms
+sudo apt install vagrant
+`
 
 [Get Started](https://www.vagrantup.com/intro/getting-started/)
 
@@ -69,3 +80,28 @@ http://192.168.56.101:7180/
 curl -O https://archive.cloudera.com/cm5/installer/latest/cloudera-manager-installer.bin
 chmod 777 cloudera-manager-installer.bin
 ./cloudera-manager-installer.bin
+
+
+#### Create host server
+
+vagrant up
+
+Update hosts file
+
+127.0.0.1   localhost
+      
+10.163.104.111 vc1.local vc1
+10.163.104.112 vc2.local vc2
+
+10.163.104.113 vc3.local vc3
+10.163.104.114 vc4.local vc4
+10.163.104.115 vc5.local vc5
+10.163.104.116 vc6.local vc6
+10.163.104.117 vc7.local vc7
+10.163.104.118 vc8.local vc8
+10.163.104.119 vc9.local vc9
+10.163.104.120 vc10.local vc10
+
+ssh vc1
+ssh vc4
+
