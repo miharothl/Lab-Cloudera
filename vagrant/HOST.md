@@ -20,11 +20,16 @@ sudo apt-get install vagrant
 
 If Ubuntu 16.04 freezes on vagrant up, make sure you have:
 * vagrant version 2.0.2
+ 
+  Follow:
+  * https://askubuntu.com/questions/994926/ubuntu-16-04-freezes-on-vagrant-up
+  
+  Download vagrant and install the package sudo dpkg -i vagrant_2.0.2_x86_64.deb
+
 * virtual box version 5.2
 
-Follow:
-* https://askubuntu.com/questions/994926/ubuntu-16-04-freezes-on-vagrant-up
-* https://www.askmetutorials.com/2017/12/install-oracle-virtualbox-524-on-ubuntu.html
+  Follow: Method 1
+  * https://www.askmetutorials.com/2017/12/install-oracle-virtualbox-524-on-ubuntu.html
 
 ## Get Configuration
 mkdir -p ~/scm/git/hub && cd ~/scm/git/hub
@@ -50,27 +55,19 @@ sudo yum install net-tools
 Follow:
 * https://www.unixmen.com/ifconfig-command-found-centos-7-minimal-installation-quick-tip-fix/
 
-### Basic Check
-
-Start minimal CentOS:
-`
-cd vagrant/0_minimal
-vagrant up
-vagrant ssh
-`
-
-Check ip address, install vim and net tools
-`
-ip add
-sudo yum install vim
-sudo yum install net-tools
-`
-
-Follow:
-*
-https://www.unixmen.com/ifconfig-command-found-centos-7-minimal-installation-quick-tip-fix/
-
 ### Setup base image
+
+If you have the base image on the other host copy it:
+
+host2:
+`
+cd ~/Lab-Cloudera/vagrant/1_base_update
+scp host:~/Lab-Cloudera/vagrant/1_base_update/base.box .
+vagrant box add --force base base.box
+vagrant box list
+`
+
+Otherwise create it by following next steps:
 
 Update hosts file:
 
@@ -112,16 +109,16 @@ Create ssh keys:
 
 base:
 `
-ssk-keygen
+ssh-keygen
 cat ~/.ssh/id_rsa.pub >>  ~/.ssh/authorized_keys
 `
 
 host:
 `
-ssk-keygen
+ssh-keygen
 cat ~/.ssh/id_rsa.pub >>  ~/.ssh/authorized_keys
 
-scp .ssh/id_rsa.pub   vagrant@node0:~/
+scp .ssh/id_rsa.pub   vagrant@vc0:~/
 `
 base:
 `
@@ -133,7 +130,6 @@ base:
 sudo vim /etc/selinux/config
 `
 SELINUX=disabled
-
 
 #### Create box
 

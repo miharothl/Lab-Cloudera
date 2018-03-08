@@ -72,11 +72,6 @@ SELINUX=disable
 http://192.168.56.101:7180/
 
 
-
-
-
-
-
 curl -O https://archive.cloudera.com/cm5/installer/latest/cloudera-manager-installer.bin
 chmod 777 cloudera-manager-installer.bin
 ./cloudera-manager-installer.bin
