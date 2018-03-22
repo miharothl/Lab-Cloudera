@@ -23,7 +23,7 @@ If Ubuntu 16.04 freezes on vagrant up, make sure you have:
  
   Follow:
   * https://askubuntu.com/questions/994926/ubuntu-16-04-freezes-on-vagrant-up
-  
+
   Download vagrant and install the package sudo dpkg -i vagrant_2.0.2_x86_64.deb
 
 * virtual box version 5.2
@@ -116,8 +116,6 @@ cat ~/.ssh/id_rsa.pub >>  ~/.ssh/authorized_keys
 host:
 `
 ssh-keygen
-cat ~/.ssh/id_rsa.pub >>  ~/.ssh/authorized_keys
-
 scp .ssh/id_rsa.pub   vagrant@vc0:~/
 `
 base:
