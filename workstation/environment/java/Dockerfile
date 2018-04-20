@@ -1,0 +1,4 @@
+FROM openjdk:10
+
+
+EXPOSE 8000
