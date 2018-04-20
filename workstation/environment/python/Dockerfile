@@ -1,27 +1,37 @@
 FROM ubuntu:latest  
 
+##############################################################################
+# Pycharm pyspark debug requiremntes
+##############################################################################
+
 RUN apt-get update
-RUN apt-get install --no-install-recommends --no-install-suggests -y vim python3-pip python-pip wget \
+RUN apt-get install --no-install-recommends --no-install-suggests -y \
+    vim \
+    python3-pip \
+    python-pip \
+    wget \
     software-properties-common
 
+# install java
 RUN add-apt-repository ppa:webupd8team/java
-
 RUN apt-get install --no-install-recommends --no-install-suggests -y  \
     default-jre
 
-RUN apt-get install --no-install-recommends --no-install-suggests -y vim python3-pip wget \
-    software-properties-common
-
+# python packages
 RUN pip install --upgrade pip
 RUN pip install pandas
+
+# Support for pycharm
 RUN pip install setuptools
-#RUN pip install pyspark
+
+# Support for pyspark
 RUN pip install py4j
 RUN pip install findspark 
 
-#WORKDIR /data  
-#VOLUME /data  
-#CMD sh -c "curl -L $SITE_URL > /data/results"
+
+##############################################################################
+# Install spark
+##############################################################################
 
 # Scala related variables.
 ARG SCALA_VERSION=2.12.2
