@@ -91,11 +91,10 @@ spark-shell
 
 get pi.py from 1.6 spark on on github
 
-		        
-
 spark-submit --num-executors 2 --executor-cores 2 --executor-memory 500m pi.py
 
+## Uninstall Cloudera from the node
 
-
+Read: https://www.cloudera.com/documentation/enterprise/latest/topics/cm_ig_uninstall_cm.html
 
 

@@ -9,3 +9,10 @@ docker run -it -p 4040:4040 -p 8080:8080 -p 8081:8081 -h spark --name=spark p7hb
 
 
 https://www.jetbrains.com/help/idea/running-a-java-app-in-a-container.html
+
+
+install IntelliJ
+install Docker Integration plugin
+install Java JDK
+
+
