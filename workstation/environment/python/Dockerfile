@@ -5,19 +5,21 @@ FROM ubuntu:latest
 ##############################################################################
 
 RUN apt-get update
+
+# Install tools
 RUN apt-get install --no-install-recommends --no-install-suggests -y \
     vim \
-    python3-pip \
+    #python3-pip \
     python-pip \
     wget \
     software-properties-common
 
-# install java
+# Install java
 RUN add-apt-repository ppa:webupd8team/java
 RUN apt-get install --no-install-recommends --no-install-suggests -y  \
     default-jre
 
-# python packages
+# Install python packages
 RUN pip install --upgrade pip
 RUN pip install pandas
 
@@ -25,9 +27,19 @@ RUN pip install pandas
 RUN pip install setuptools
 
 # Support for pyspark
-RUN pip install py4j
-RUN pip install findspark 
+#RUN pip install py4j==0.10.4
+#RUN pip install py4j
+RUN pip install findspark
 
+##############################################################################
+# Jupiter
+##############################################################################
+
+RUN apt-get install --no-install-recommends --no-install-suggests -y \
+    ipython \
+    ipython-notebook
+
+#VOLUME /data
 
 ##############################################################################
 # Install spark
@@ -84,5 +96,8 @@ WORKDIR /root
 # Spark master’s web UI on 8080.
 # Spark worker web UI on 8081.
 EXPOSE 4040 8080 8081
+
+# Expose jupyter notebook
+EXPOSE 55555
 
 CMD ["/bin/bash"]
