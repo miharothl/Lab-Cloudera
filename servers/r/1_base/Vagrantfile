@@ -1,0 +1,37 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+#Vagrant.configure("2") do |config|
+#  config.vm.box = "ubuntu/precise64"
+#  config.vm.hostname = 'web'
+#  config.vm.box_url = "ubuntu/precise64"
+#
+#  config.vm.network :private_network, ip: "192.168.56.101"
+#
+#  config.vm.provider :virtualbox do |v|
+#    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+#    v.customize ["modifyvm", :id, "--memory", 512]
+#    v.customize ["modifyvm", :id, "--name", "web"]
+#  end
+#end
+
+
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define "rserver0" do |rserver0|
+    rserver0.vm.box = "centos/7"
+    rserver0.vm.hostname = 'rserver0'
+    rserver0.vm.box_url = "centos/7"
+
+    rserver0.vm.network :public_network, ip: "192.168.1.140", bridge: "en0"
+
+    rserver0.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 7168]
+      v.customize ["modifyvm", :id, "--name", "rserver0"]
+      v.customize ["modifyvm", :id, "--cpus", "4"]
+    end
+  end
+
+end
