@@ -1,0 +1,72 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+#Vagrant.configure("2") do |config|
+#  config.vm.box = "ubuntu/precise64"
+#  config.vm.hostname = 'web'
+#  config.vm.box_url = "ubuntu/precise64"
+#
+#  config.vm.network :private_network, ip: "192.168.56.101"
+#
+#  config.vm.provider :virtualbox do |v|
+#    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+#    v.customize ["modifyvm", :id, "--memory", 512]
+#    v.customize ["modifyvm", :id, "--name", "web"]
+#  end
+#end
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define "nifi0" do |nifi|
+    nifi.vm.box = "centos/7"
+    nifi.vm.hostname = 'nifi0'
+    nifi.vm.box_url = "centos/7"
+
+    nifi.vm.network :private_network, ip: "192.168.2.130"
+    
+    nifi.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 3072]
+      v.customize ["modifyvm", :id, "--name", "nifi0"]
+      v.customize ["modifyvm", :id, "--cpus", "4"]
+    end
+  end
+end
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define "nifi1" do |nifi|
+    nifi.vm.box = "centos/7"
+    nifi.vm.hostname = 'nifi1'
+    nifi.vm.box_url = "centos/7"
+
+    nifi.vm.network :private_network, ip: "192.168.2.131"
+    
+    nifi.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 3072]
+      v.customize ["modifyvm", :id, "--name", "nifi1"]
+      v.customize ["modifyvm", :id, "--cpus", "4"]
+    end
+  end
+
+end
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define "nifi2" do |nifi|
+    nifi.vm.box = "centos/7"
+    nifi.vm.hostname = 'nifi2'
+    nifi.vm.box_url = "centos/7"
+
+    nifi.vm.network :private_network, ip: "192.168.2.132"
+    
+    nifi.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 3072]
+      v.customize ["modifyvm", :id, "--name", "nifi2"]
+      v.customize ["modifyvm", :id, "--cpus", "4"]
+    end
+  end
+
+end

@@ -1,0 +1,43 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+#Vagrant.configure("2") do |config|
+#  config.vm.box = "ubuntu/precise64"
+#  config.vm.hostname = 'web'
+#  config.vm.box_url = "ubuntu/precise64"
+#
+#  config.vm.network :private_network, ip: "192.168.56.101"
+#
+#  config.vm.provider :virtualbox do |v|
+#    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+#    v.customize ["modifyvm", :id, "--memory", 512]
+#    v.customize ["modifyvm", :id, "--name", "web"]
+#  end
+#end
+
+
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define "nginx-rpm" do |nginx|
+    nginx.vm.box = "centos/7"
+    nginx.vm.hostname = 'nginx-rpm'
+    nginx.vm.box_url = "centos/7"
+
+    nginx.vm.network :private_network, ip: "192.168.2.120"
+    nginx.vm.network "forwarded_port", guest: 8080, host: 8080
+    nginx.vm.network "forwarded_port", guest: 8080, host: 80
+    nginx.vm.network "forwarded_port", guest: 8081, host: 8081
+    nginx.vm.network "forwarded_port", guest: 8081, host: 443
+    nginx.vm.network "forwarded_port", guest: 3838, host: 3838
+    nginx.vm.network "forwarded_port", guest: 18088, host: 18088
+    
+    nginx.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 3072]
+      v.customize ["modifyvm", :id, "--name", "nginx-rpm"]
+      v.customize ["modifyvm", :id, "--cpus", "4"]
+    end
+  end
+
+end
