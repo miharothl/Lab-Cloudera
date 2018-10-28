@@ -1,0 +1,72 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+#Vagrant.configure("2") do |config|
+#  config.vm.box = "ubuntu/precise64"
+#  config.vm.hostname = 'web'
+#  config.vm.box_url = "ubuntu/precise64"
+#
+#  config.vm.network :private_network, ip: "192.168.56.101"
+#
+#  config.vm.provider :virtualbox do |v|
+#    v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+#    v.customize ["modifyvm", :id, "--memory", 512]
+#    v.customize ["modifyvm", :id, "--name", "web"]
+#  end
+#end
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define "kube0" do |kube|
+    kube.vm.box = "centos/7"
+    kube.vm.hostname = 'kube0'
+    kube.vm.box_url = "centos/7"
+
+    kube.vm.network :private_network, ip: "192.168.2.140"
+    
+    kube.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 3072]
+      v.customize ["modifyvm", :id, "--name", "kube0"]
+      v.customize ["modifyvm", :id, "--cpus", "4"]
+    end
+  end
+end
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define "kube1" do |kube|
+    kube.vm.box = "centos/7"
+    kube.vm.hostname = 'kube1'
+    kube.vm.box_url = "centos/7"
+
+    kube.vm.network :private_network, ip: "192.168.2.141"
+    
+    kube.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 3072]
+      v.customize ["modifyvm", :id, "--name", "kube1"]
+      v.customize ["modifyvm", :id, "--cpus", "4"]
+    end
+  end
+
+end
+
+Vagrant.configure("2") do |config|
+
+  config.vm.define "kube2" do |kube|
+    kube.vm.box = "centos/7"
+    kube.vm.hostname = 'kube2'
+    kube.vm.box_url = "centos/7"
+
+    kube.vm.network :private_network, ip: "192.168.2.142"
+    
+    kube.vm.provider :virtualbox do |v|
+      v.customize ["modifyvm", :id, "--natdnshostresolver1", "on"]
+      v.customize ["modifyvm", :id, "--memory", 3072]
+      v.customize ["modifyvm", :id, "--name", "kube2"]
+      v.customize ["modifyvm", :id, "--cpus", "4"]
+    end
+  end
+
+end
